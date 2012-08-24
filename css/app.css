@@ -1,1 +1,9 @@
 /* app css stylesheet */
+
+.contact-list-name {
+  width: 400px;
+}
+
+.contact-list-action {
+  width: 200px;
+}

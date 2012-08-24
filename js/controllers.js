@@ -46,14 +46,33 @@ function ContactListCtrl($scope) {
 	];
 	$scope.orderProp = 'name';
 
-	$scope.showMoreIndex = -1;
+	$scope.showMoreIndex = '';
 
 	$scope.doShowMore = function (contactIndex) {
-        $scope.showMoreIndex = contactIndex;
+		if($scope.showMoreIndex == contactIndex){
+			$scope.showMoreIndex = ''; // hide more info
+		} else {
+	        $scope.showMoreIndex = contactIndex;
+		}
     }
         
     $scope.isShowMore = function (contactIndex) {
         return $scope.showMoreIndex == contactIndex;
     }
 
+    $scope.deleteContact = function (contactIndex) {
+    	var contacts = $scope.contacts;
+        for (var i = 0; i < contacts.length; i++) {
+        	if (contactIndex == contacts[i].email) {
+        		alert(contacts[i].email);
+        		contacts.splice(i,1);
+        		break;
+        	}
+        }
+    }
+
+}
+
+function ContactFormCtrl($scope, $routeParams) {
+	$scope.contactID = $routeParams.contactID;
 }

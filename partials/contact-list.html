@@ -5,7 +5,7 @@ Search: <input ng-model="query"> <a href="#/contact-form">add contact</a>
   <table  class="table table-striped">
     
     <tbody>
-      <tr ng-repeat="contact in contacts | filter:query | orderBy:orderProp">
+      <tr ng-repeat="contact in list() | filter:query | orderBy:orderProp">
         <td  class="contact-list-name">
           {{contact.name}}
           <div ng-show="isShowMore(contact.email)">

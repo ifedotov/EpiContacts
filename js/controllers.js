@@ -54,11 +54,11 @@ function ContactListCtrl($scope) {
 		} else {
 	        $scope.showMoreIndex = contactIndex;
 		}
-    }
+    };
         
     $scope.isShowMore = function (contactIndex) {
         return $scope.showMoreIndex == contactIndex;
-    }
+    };
 
     $scope.deleteContact = function (contactIndex) {
     	var contacts = $scope.contacts;
@@ -69,7 +69,7 @@ function ContactListCtrl($scope) {
         		break;
         	}
         }
-    }
+    };
 
 }
 

@@ -1,0 +1,21 @@
+
+Search: <input ng-model="query">
+<table>
+  
+  <tbody>
+    <tr ng-repeat="contact in contacts | filter:query | orderBy:orderProp">
+      <td>{{contact.name}}
+        <div ng-show="isShowMore($index)">
+          phone:{{contact.phone}}<br>          
+          email:{{contact.email}}
+        </div>
+      </td>
+      <td>
+        <a ng-click="doShowMore($index)">more</a> | 
+        <a href="">edit</a> | 
+        <a href="">delete</a> | 
+      </td>
+    </tr>
+  </tbody>
+</table>
+

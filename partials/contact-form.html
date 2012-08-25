@@ -1,7 +1,7 @@
 <table id="header-table">
   <tbody>
     <tr>
-      <td><span class="create-contact"><a href="#/contact-list"><span class="create-contact-right">&laquo; back </span></a></span></td>
+      <td><span class="create-contact" ng-click="cancel()"><span class="create-contact-right">&laquo; back </span></span></td>
     </tr>
   </tbody>
 </table>
@@ -20,7 +20,7 @@
 			<input class="contact-input" ng-model="contact.email">
 
 			<div class="contact-form-bottom">
-				<button class="button" ng-disabled="!contact.email" ng-submit="save(contact);">{{addContactButtonText}}</button> ( <a href="#/contact-list">cancel</a> )
+				<button class="button" ng-disabled="!contact.email" ng-submit="save(contact);">{{addContactButtonText}}</button> ( <span class="create-contact cancel" ng-click="cancel()">cancel</span> )
 			</div>
 			</form>
 		</td>

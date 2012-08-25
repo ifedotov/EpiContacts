@@ -8,7 +8,7 @@ body {
 
 #container {
 	margin: 0 auto;
-	width:650px;
+	width:600px;
 	text-align: left;
 	background-color: #272727;
 	color: white;
@@ -21,7 +21,7 @@ body {
  }
 
 a:link, a:visited, a:hover, a:active { 
-	color: #877f5f; 
+	color: #a79f7f; 
 	text-decoration: underline; 
 }
 
@@ -31,7 +31,7 @@ table#contact-list {
 	padding: 0px;
 	border: 18px solid #373737;
 	border-collapse:collapse;
-	width: 650px;
+	width: 600px;
 }
 
 table#contact-list tr, table#contact-list td {
@@ -43,7 +43,7 @@ table#contact-list tr, table#contact-list td {
 }
 
 table#contact-list .contact-list-action {
-	width: 300px;
+	width: 250px;
 	text-align: right;
 }
 
@@ -54,16 +54,24 @@ table#contact-list .contact-list-name {
 table#header-table {
 	background-color: #5f5f4f;
 	padding: 10px;
-	width: 650px;
+	width: 600px;
 	font-size: 20px;
 }
 
 .create-contact {
 	text-align: right;
 	text-decoration: none; 
+	cursor: pointer;
 }
+
 .create-contact-right {
 	color: white;
+}
+
+.cancel {
+	text-align: inherit;
+	text-decoration: underline;
+	color: #a79f7f; 
 }
 
 .create-contact a:link, a:visited, a:hover, a:active { 
@@ -79,7 +87,7 @@ table#header-table {
 }
 
 .more-info-key {
-	color: #877f5f;
+	color: #a79f7f;
 	width: 70px;
 	text-align: right;
 	display: inline-block;
@@ -91,15 +99,15 @@ table#header-table {
     background: #877f5f;
     color: white;
     font-size: 18px;
-    width: 300px; 
+    width: 250px; 
 }
 
 
 .contact-input {
     border: 1px solid #272727;
     background: #272727;
-    color: #877f5f;
-    font-size: 20px;
+    color: #a79f7f;
+    font-size: 18px;
     width: 95%; 
     margin: 0px;
     padding: 6px;
@@ -122,9 +130,9 @@ table#contact-list td.contact-label-td {
 }
 
 .button {
-	border: 1px solid #877f5f;
+	border: 1px solid #a79f7f;
     background: #272727;
-    color: #877f5f;
+    color: #a79f7f;
     font-size: 18px;
-
+    margin-right: 20px;
 }

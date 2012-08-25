@@ -48,4 +48,11 @@ function ContactFormCtrl($scope, $routeParams, $location, contacts) {
             $location.path('/contact-list');
         }
     };
+
+    $scope.cancel = function () {
+    	if(confirm('Are you sure you want to cancel?')) {
+    		$location.path('/contact-list');
+    	}
+    	return false;
+    };
 }

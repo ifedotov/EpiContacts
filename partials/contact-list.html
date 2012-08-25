@@ -1,23 +1,31 @@
 
-Search: <input ng-model="query"> <a href="#/contact-form">add contact</a>
+<div class="header-row"></div>
 
-<div>
-  <table  class="table table-striped">
-    
-    <tbody>
-      <tr ng-repeat="contact in list() | filter:query | orderBy:orderProp">
-        <td  class="contact-list-name">
-          {{contact.name}}
-          <div ng-show="isShowMore(contact.email)">
-            phone:{{contact.phone}}<br>          
-            email:{{contact.email}}
-          </div>
-        </td>
-        <td class="contact-list-action">
-          <a ng-click="doShowMore(contact.email)">more</a> | 
-          <a href="#/contact-form/{{contact.email}}">edit</a> | 
-          <a ng-click="deleteContact(contact.email)">delete</a> | 
-        </td>
+<table id="header-table">
+  <tbody>
+    <tr>
+      <td>search: <input class="input" ng-model="query"></td>
+      <td><span class="create-contact"><a href="#/contact-form/0">create<span class="create-contact-right">contact &raquo;</span></a></span></td>
+    </tr>
+  </tbody>
+</table>
+
+<table id="contact-list">
+  <tbody>
+    <tr ng-repeat="contact in list() | filter:query | orderBy:orderProp">
+      <td  class="contact-list-name">
+        {{contact.name}}
+        <div class="more-info-box" ng-show="isShowMore(contact.id)">
+          <div class="more-info-key">name:</div> {{contact.name}}<br>
+          <div class="more-info-key">phone:</div> {{contact.phone}}<br>          
+          <div class="more-info-key">email:</div> {{contact.email}}<br>
+        </div>
+      </td>
+      <td class="contact-list-action">
+        <a ng-click="doShowMore(contact.id)">more</a> | 
+        <a href="#/contact-form/{{contact.id}}">edit</a> | 
+        <a ng-click="deleteContact(contact.id)">delete</a>
+      </td>
     </tr>
   </tbody>
 </table>

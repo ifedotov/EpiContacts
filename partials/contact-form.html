@@ -1,6 +1,30 @@
-contact {{contactID}}
-name: <input ng-model="name"><br>
-phone: <input ng-model="phone"><br>
-email: <input ng-model="email"><br>
+<table id="header-table">
+  <tbody>
+    <tr>
+      <td><span class="create-contact"><a href="#/contact-list"><span class="create-contact-right">&laquo; back </span></a></span></td>
+    </tr>
+  </tbody>
+</table>
+<table id="contact-list">
+  <tbody>
+  	
+    <tr>
+    	<td class="contact-label-td">
+			<form ng-submit="save(contact);">
+			<input type="hidden" ng-model="contact.id">
+			<div class="contact-label">Name:</div> 
+			<input class="contact-input" ng-model="contact.name">
+			<div class="contact-label">Phone:</div>
+			<input class="contact-input" ng-model="contact.phone">
+			<div class="contact-label">Email:</div>
+			<input class="contact-input" ng-model="contact.email">
 
-<button>Update</button> (<a href="#/contact-list">cancel</a>)
+			<div class="contact-form-bottom">
+				<button class="button" ng-disabled="!contact.email" ng-submit="save(contact);">{{addContactButtonText}}</button> ( <a href="#/contact-list">cancel</a> )
+			</div>
+			</form>
+		</td>
+	</tr>
+	
+  </tbody>
+</table>

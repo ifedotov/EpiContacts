@@ -9,22 +9,43 @@ function ContactListCtrl($scope, contacts) {
 
 	$scope.showMoreIndex = '';
 
-	$scope.doShowMore = function (contactIndex) {
-		if($scope.showMoreIndex == contactIndex){
+	$scope.doShowMore = function (contactID) {
+		if($scope.showMoreIndex == contactID){
 			$scope.showMoreIndex = ''; // hide more info
 		} else {
-	        $scope.showMoreIndex = contactIndex;
+	        $scope.showMoreIndex = contactID;
 		}
     };
         
-    $scope.isShowMore = function (contactIndex) {
-        return $scope.showMoreIndex == contactIndex;
+    $scope.isShowMore = function (contactID) {
+        return $scope.showMoreIndex == contactID;
     };
 
     $scope.deleteContact = contacts.delete;
 
 }
 
-function ContactFormCtrl($scope, $routeParams, contacts) {
-	$scope.contactID = $routeParams.contactID;
+function ContactFormCtrl($scope, $routeParams, $location, contacts) {
+	$scope.id = $routeParams.id;
+
+	$scope.addContactButtonText = 'Save & Close';
+	if ($scope.id == 0) {
+		$scope.addContactButtonText = 'Save & Close';
+	} else {
+		$scope.contact = contacts.get($scope.id);
+	}
+
+	$scope.save = function (contact) {
+		//require at least email
+		console.log(contact);
+        if(contact.email != '') {
+        	if (contact.id == null || contact.id == 'undefined') {
+        		contacts.add(contact);	
+        	} else{
+        		contacts.update(contact);
+        	};
+            
+            $location.path('/contact-list');
+        }
+    };
 }

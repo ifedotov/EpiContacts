@@ -15,11 +15,11 @@
 
 
 	<cffunction name="delete" access="public">
-		<cfargument name="contact" type="struct" required="true" />
+		<cfargument name="contactID" type="numeric" required="true" />
 		<cfscript>
 			var i = 0;
 			for(i=1; i lte arrayLen(variables.contacts); i++) {
-				if(variables.contacts[i].id EQ contact.id) {
+				if(variables.contacts[i].id EQ arguments.contactID) {
 					arrayDeleteAt(variables.contacts, i);
 					break;
 				}
@@ -35,7 +35,7 @@
 		<cfscript>
 			var i = 0;
 			for(i=1; i lte arrayLen(variables.contacts); i++) {
-				if(variables.contacts[i].id EQ contactID) {
+				if(variables.contacts[i].id EQ arguments.contactID) {
 					return variables.contacts[i];
 					
 				}
@@ -56,14 +56,14 @@
 			var c = arguments.contact;
 			// deserializeJson messes up empty fields so :-(
 			// assume email is required
-			if(not structKeyExists(c, "id")) c.id = 0;
-			if(not structKeyExists(c, "phone")) c.phone = '';
-			if(not structKeyExists(c, "name")) c.name = '';
+			if(not structKeyExists(c, "id")) c['id'] = 0;
+			if(not structKeyExists(c, "phone")) c['phone'] = '';
+			if(not structKeyExists(c, "name")) c['name'] = '';
 
 			if(isNumeric(c.id) and c.id gt 0) {
 				update(c);
 			} else {
-				c.id = variables.contacts[arrayLen(variables.contacts)].id+1; //assuming last contact in the aray has hihgest id
+				c.id = "#variables.contacts[arrayLen(variables.contacts)].id+1#"; //assuming last contact in the aray has hihgest id
 				add(c);
 			}
 			saveDataToStorage(variables.contacts);

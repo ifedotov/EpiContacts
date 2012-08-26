@@ -59,7 +59,9 @@ services.factory('contacts', function($http) {
 
     
     contactsService.delete = function (contactID) {
-	    $http.post('remote.cfc?method=delete&contactID=' + contactID);
+    	if (confirm("Delete this contact?")) {
+    		$http.post('remote.cfc?method=delete&contactID=' + contactID);
+    	}
     };
 
 

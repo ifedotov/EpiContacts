@@ -3,7 +3,7 @@
 /* Controllers */
 
 
-function ContactListCtrl($scope, contacts) {
+function ContactListCtrl($scope, $location, contacts) {
 
     var contactsPromise = contacts.getContacts();
     contactsPromise.then(function(b) {
@@ -27,7 +27,12 @@ function ContactListCtrl($scope, contacts) {
         return $scope.showMoreIndex == contactID;
     };
 
-    $scope.deleteContact = contacts.delete;
+    $scope.deleteContact = function(contactID)  {
+        contacts.delete(contactID);
+        contacts.getContacts().then(function(b) {
+            $scope.contacts = b;
+        }); // chit refresh after delete
+    };
 
 }
 

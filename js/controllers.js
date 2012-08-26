@@ -4,7 +4,13 @@
 
 
 function ContactListCtrl($scope, contacts) {
-	$scope.list = contacts.list;
+
+    var contactsPromise = contacts.getContacts();
+    contactsPromise.then(function(b) {
+            $scope.contacts = b;
+    });
+
+	//$scope.contacts = contacts.contacts;
 	$scope.orderProp = 'name';
 
 	$scope.showMoreIndex = '';

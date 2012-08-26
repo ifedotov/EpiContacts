@@ -4,8 +4,8 @@
 
 var services = angular.module('epiContactServices', []);
 
-services.factory('contacts', function() {
-    var contacts =[
+services.factory('contacts', function($http) {
+/*    var contacts = [
 			{"id":"1","name":"Alison Ramsay","phone":"0131 650 6324","email":"alison.ramsay@ed.ac.uk"},
 			{"id":"2","name":"Alistair Hudson","phone":"0131 650 2217","email":"alistair.hudson@ed.ac.uk"},
 			{"id":"3","name":"Cheryl Loney","phone":"0131 651 4072","email":"cheryl.loney@ed.ac.uk"},
@@ -44,13 +44,22 @@ services.factory('contacts', function() {
 			{"id":"36","name":"Sarah Nicol","phone":"0131 650 9268","email":"sarah.nicol@ed.ac.uk"},
 			{"id":"37","name":"Sharon Reid","phone":"0131 651 4778","email":"sharon.reid@ed.ac.uk"},
 			{"id":"38","name":"Sheena Jenkins","phone":"0131 650 8116","email":"sheena.jenkins@ed.ac.uk"}
-		];
+		];*/
+	
 
-    var contactsService = {};
-    
+	var contactsService = function(data) {
+	    angular.extend(this, data);
+	}
+
+	contactsService.getContacts = function() {
+	    return $http.get('remote.cfc?method=list&returnformat=json').then(function(response) {
+	      return response.data;
+	    });
+	};
+
+	    
     contactsService.add = function(contact) {
-    	contact.id = parseFloat(contacts[contacts.length-1].id) + 1; // assuming last contact in the list has largest id
-    	console.log(contact);
+    	$http.post('remote.cfc?method=add&returnformat=json', contact);
         contacts.push(contact);
     };
     

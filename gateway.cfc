@@ -45,6 +45,11 @@
 	</cffunction>
 
 
+	<cffunction name="list">
+		<cfreturn variables.contacts />
+	</cffunction>
+
+
 	<cffunction name="save" access="public">
 		<cfargument name="contact" type="struct" required="true" />
 		<cfscript>
@@ -91,9 +96,5 @@
 		<cffile action="write" file="#getDirectoryFromPath(getCurrentTemplatePath())#/contacts.json" output="#jsonData#" />
 	</cffunction>
 
-
-	<cffunction name="getContacts">
-		<cfreturn variables.contacts />
-	</cffunction>
 
 </cfcomponent>

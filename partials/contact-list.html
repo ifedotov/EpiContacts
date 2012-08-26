@@ -12,7 +12,7 @@
 
 <table id="contact-list">
   <tbody>
-    <tr ng-repeat="contact in list() | filter:query | orderBy:orderProp">
+    <tr ng-repeat="contact in contacts | filter:query | orderBy:orderProp">
       <td  class="contact-list-name">
         {{contact.name}}
         <div class="more-info-box" ng-show="isShowMore(contact.id)">

@@ -38,19 +38,17 @@ function ContactFormCtrl($scope, $routeParams, $location, contacts) {
 	if ($scope.id == 0) {
 		$scope.addContactButtonText = 'Save & Close';
 	} else {
-		$scope.contact = contacts.get($scope.id);
+		//$scope.contact = contacts.get($scope.id);
+        var contactPromise = contacts.get($scope.id);
+        contactPromise.then(function(b) {
+                $scope.contact = b;
+        });
 	}
 
 	$scope.save = function (contact) {
 		//require at least email
-		console.log(contact);
         if(contact.email != '') {
-        	if (contact.id == null || contact.id == 'undefined') {
-        		contacts.add(contact);	
-        	} else{
-        		contacts.update(contact);
-        	};
-            
+        	contacts.save(contact);
             $location.path('/contact-list');
         }
     };

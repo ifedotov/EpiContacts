@@ -57,41 +57,23 @@ services.factory('contacts', function($http) {
 	    });
 	};
 
-	    
-    contactsService.add = function(contact) {
-    	$http.post('remote.cfc?method=add&returnformat=json', contact);
-        contacts.push(contact);
-    };
     
     contactsService.delete = function (contactID) {
-	    for (var i = 0; i < contacts.length; i++) {
-	    	if (contactID == contacts[i].id && confirm("Delete this contact?")) {
-	    		contacts.splice(i,1);
-	    		break;
-	    	}
-	    }
+	    $http.post('remote.cfc?method=delete&contactID=' + contactID);
     };
+
 
     contactsService.get = function(contactID) {
-        for (var i = 0; i < contacts.length; i++) {
-	    	if (contactID == contacts[i].id) {
-	    		return contacts[i];
-	    	}
-	    } 
+    	return $http.get('remote.cfc?method=get&returnformat=json&contactID=' + contactID).then(function(response) {
+	      return response.data;
+	    });
     };
 
-    contactsService.update = function (contact) {
-	    for (var i = 0; i < contacts.length; i++) {
-	    	if (contact.id == contacts[i].id) {
-	    		contacts[i] = contact;
-	    		break;
-	    	}
-	    }
+
+    contactsService.save = function(contact) {
+    	$http.post('remote.cfc?method=save&contact='+angular.toJson(contact));
     };
 
-    contactsService.list = function() {
-        return contacts;
-    };
-
+    
     return contactsService;
 });

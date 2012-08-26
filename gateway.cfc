@@ -53,12 +53,18 @@
 	<cffunction name="save" access="public">
 		<cfargument name="contact" type="struct" required="true" />
 		<cfscript>
+			var c = arguments.contact;
+			// deserializeJson messes up empty fields so :-(
+			// assume email is required
+			if(not structKeyExists(c, "id")) c.id = 0;
+			if(not structKeyExists(c, "phone")) c.phone = '';
+			if(not structKeyExists(c, "name")) c.name = '';
 
-			if(isNumeric(contact.id) and contact.id gt 0) {
-				update(contact);
+			if(isNumeric(c.id) and c.id gt 0) {
+				update(c);
 			} else {
-				contact.id = variables.contacts[arrayLen(variables.contacts)].id+1; //assuming last contact in the aray has hihgest id
-				add(contact);
+				c.id = variables.contacts[arrayLen(variables.contacts)].id+1; //assuming last contact in the aray has hihgest id
+				add(c);
 			}
 			saveDataToStorage(variables.contacts);
 		</cfscript>

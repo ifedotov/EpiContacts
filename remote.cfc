@@ -20,9 +20,10 @@
 	</cffunction>
 	
 
-	<cffunction name="save" access="remote">
-		<cfargument name="contact" equired="true" />
-		<cfset variables.gateway.save(arguments.contact) />
+	<cffunction name="save" access="remote" >
+		<cfargument name="contact" type="any" />
+		
+		<cfset variables.gateway.save(deserializeJSON(arguments.contact)) />
 	</cffunction>
 
 

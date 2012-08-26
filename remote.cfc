@@ -1,4 +1,4 @@
-<cfcomponent>
+<cfcomponent  output="false" hint="remote data access for Epicontacts application">
 
 	<cfset variables.gateway = createObject("component", "gateway").init() />
 
@@ -20,9 +20,8 @@
 	</cffunction>
 	
 
-	<cffunction name="save" access="remote" >
-		<cfargument name="contact" type="any" />
-		
+	<cffunction name="save" access="remote">
+		<cfargument name="contact" type="any" required="true" />
 		<cfset variables.gateway.save(deserializeJSON(arguments.contact)) />
 	</cffunction>
 

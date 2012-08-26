@@ -1,4 +1,4 @@
-<cfcomponent>
+<cfcomponent displayname="gateway" output="false" hint="data ppersistence for EpiContacts application">
 
 	<cffunction name="init" access="public">
 		<cfset var jsonData = loadDataFromStorage() />
@@ -88,15 +88,15 @@
 
 
 
-	<cffunction name="loadDataFromStorage" access="public">
+	<cffunction name="loadDataFromStorage" access="private">
 		<cfset var contactsJson = '' />		
 		<cffile action="read" file="#getDirectoryFromPath(getCurrentTemplatePath())#/contacts.json" variable="contactsJson" />
 		<cfreturn contactsJson />
 	</cffunction>
 
 
-	<cffunction name="saveDataToStorage" access="public">
-		<cfargument name="contacts" required="true" />
+	<cffunction name="saveDataToStorage" access="private">
+		<cfargument name="contacts" type="array" required="true" />
 		<cfset var jsonData = serializeJSON(arguments.contacts) />		
 
 		<cffile action="write" file="#getDirectoryFromPath(getCurrentTemplatePath())#/contacts.json" output="#jsonData#" />

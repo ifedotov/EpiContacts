@@ -28,10 +28,11 @@ function ContactListCtrl($scope, $location, contacts) {
     };
 
     $scope.deleteContact = function(contactID)  {
-        contacts.delete(contactID);
-        contacts.getContacts().then(function(b) {
-            $scope.contacts = b;
-        }); // chit refresh after delete
+        contacts.delete(contactID).then(function() {
+            contacts.getContacts().then(function(b) {
+                $scope.contacts = b;
+            });
+        }); 
     };
 
 }

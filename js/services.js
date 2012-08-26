@@ -53,14 +53,16 @@ services.factory('contacts', function($http) {
 
 	contactsService.getContacts = function() {
 	    return $http.get('remote.cfc?method=list&returnformat=json').then(function(response) {
-	      return response.data;
+	    	return response.data;
 	    });
 	};
 
     
     contactsService.delete = function (contactID) {
     	if (confirm("Delete this contact?")) {
-    		$http.post('remote.cfc?method=delete&contactID=' + contactID);
+    		return $http.post('remote.cfc?method=delete&contactID=' + contactID).then(function(response) {
+	      		return response.data;
+	    });
     	}
     };
 

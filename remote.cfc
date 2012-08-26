@@ -1,4 +1,4 @@
-<cfcomponent  output="false" hint="remote data access for Epicontacts application">
+<cfcomponent displayname="remote" output="false" hint="remote data access for EpiContacts application">
 
 	<cfset variables.gateway = createObject("component", "gateway").init() />
 
